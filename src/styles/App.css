@@ -1,15 +1,16 @@
 .App {
   text-align: center;
+  background-image: url('../styles/ryan-stone-1061930-unsplash.jpg');
+  background-size: cover;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.boardContainer {
+  align-self: center;
+  background-color: #313E50;
+  margin-top: 25px;
 }
-
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

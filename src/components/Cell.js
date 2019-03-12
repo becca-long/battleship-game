@@ -6,9 +6,9 @@ const Cell = ({cellIndex, handleCellClick, rowIndex, isEmpty, isClicked}) => {
   return (
     <div key={cellIndex} 
          id="cell" 
-         style={{border: '1px solid black', height: '50px', width: '50px'}}
+         style={{border: '1px solid #00F7F7', height: '50px', width: '50px'}}
          onClick={() => handleCellClick(cellIndex, rowIndex)}>
-        <h5>{isClicked && isEmpty ? 'Miss!' : ''}</h5>
+        <h5 style={{color: '#00F7F7'}}>{(isClicked && isEmpty) ? 'Miss!' : (isClicked === true && isEmpty === false) ? 'Hit!' : ''}</h5>
     </div>
   )
 }

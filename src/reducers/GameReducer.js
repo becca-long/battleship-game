@@ -1,7 +1,9 @@
+import buildBoard from '../modules/BuildBoard'
+import plantShips from '../modules/PlantShips'
+
 const initialState = {
     board: [],
 }
-
 
 const gameReducer = (state = initialState, action) => {
 
@@ -9,17 +11,8 @@ const gameReducer = (state = initialState, action) => {
 
         case 'INIT_BOARD':
             const initialBoard = state.board.slice()
-            for (let i = 0; i < action.height; i++) {
-                initialBoard.push([]);
-                for (let j = 0; j < action.width; j++) {
-                    initialBoard[i][j] = {
-                        row: i,
-                        column: j,
-                        isClicked: false,
-                        isEmpty: true,
-                    }
-                }
-            };
+            buildBoard(initialBoard, action.height, action.width)
+            plantShips(initialBoard, action.width)
             return {
                 board: initialBoard
             };

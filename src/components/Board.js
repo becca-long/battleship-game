@@ -20,7 +20,7 @@ class Board extends Component {
 
     render() {
         return (
-        <div className="container">
+        <div className="boardContainer" style={{display: 'inline-block'}}>
             {this.props.boardArray.map(Row)}
         </div>
         )

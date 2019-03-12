@@ -9,8 +9,6 @@ import {Provider} from 'react-redux';
 
 const store = createStore(gameReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-store.dispatch({type: 'INIT_BOARD', height: 7, width: 7})
-
 ReactDOM.render(
     <Provider store={store}>
         <App />
