@@ -13,11 +13,11 @@ function plantShips(board, width) {
 
     generateBoardCoordinates(board, width)
 
-    plantHorizontalShip(boardCoordinates, shipPositions, 5)
-    plantHorizontalShip(boardCoordinates, shipPositions, 4)
-    plantHorizontalShip(boardCoordinates, shipPositions, 3)
-    plantHorizontalShip(boardCoordinates, shipPositions, 3)
-    plantVerticalShip(boardCoordinates, shipPositions, 2)
+    randomShipOrientation(boardCoordinates, shipPositions, 5)
+    randomShipOrientation(boardCoordinates, shipPositions, 4)
+    randomShipOrientation(boardCoordinates, shipPositions, 3)
+    randomShipOrientation(boardCoordinates, shipPositions, 3)
+    randomShipOrientation(boardCoordinates, shipPositions, 2)
 
     if (logPositions) {
         console.log('All Ships:', shipPositions)
@@ -37,6 +37,12 @@ function generateBoardCoordinates (board, numColumns) {
             boardCoordinates.push(JSON.stringify(item[i].row) + JSON.stringify(item[i].column))
         }
     })
+}
+
+function randomShipOrientation(boardCoordinates, shipPositions, shipLength) {
+    let functionArray = [plantHorizontalShip, plantVerticalShip]
+    var randomFunc = functionArray[Math.floor(Math.random() * functionArray.length)];
+    (randomFunc)(boardCoordinates, shipPositions, shipLength);
 }
 
 export default plantShips

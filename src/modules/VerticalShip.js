@@ -1,11 +1,20 @@
 const logVerticalShipPositions = true
 
 function plantVerticalShip (boardCoordinates, shipPositions, shipLength) {
+
+//************************************************************************************* */
+// Randomly Choose First Coordinate for Ship  
+//************************************************************************************* */
+
     let randomFirstIndex = ''
     do {
         randomFirstIndex = Math.floor(Math.random()*boardCoordinates.length)
     } 
     while (boardCoordinates[randomFirstIndex].charAt(0) > (10 - shipLength))
+
+//************************************************************************************* */
+// Choose Cells Ship Will Occupy
+//************************************************************************************* */
 
     let firstShipCell = boardCoordinates[randomFirstIndex]
     shipPositions.push(firstShipCell)
@@ -15,8 +24,12 @@ function plantVerticalShip (boardCoordinates, shipPositions, shipLength) {
         shipPositions.push(nextShipCell)
     }
 
+//************************************************************************************* */
+// Remove the Coordinates of the Ship's Cells from the List of Possibilities
+//************************************************************************************* */
+
     if (logVerticalShipPositions) {
-        console.log('Next Ship:')
+        console.log('Next Vertical Ship:')
     }
 
     for (let i = (shipPositions.length - 1); i >= (shipPositions.length - shipLength); i--) {
