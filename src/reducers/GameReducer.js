@@ -1,8 +1,13 @@
 import buildBoard from '../modules/BuildBoard'
 import plantShips from '../modules/PlantShips'
+import checkForHit from '../modules/CheckForHit'
 
 const initialState = {
     board: [],
+    ships: null,
+    hits: 0,
+    clicks: 0,
+    whereHit: {}
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -12,16 +17,32 @@ const gameReducer = (state = initialState, action) => {
         case 'INIT_BOARD':
             const initialBoard = state.board.slice()
             buildBoard(initialBoard, action.height, action.width)
-            plantShips(initialBoard, action.width)
+            let ships = plantShips(initialBoard, action.width)
             return {
-                board: initialBoard
+                ...state,
+                board: initialBoard,
+                ships: ships
             };
 
         case 'CELL_IS_CLICKED':
+            if (state.whereHit[action.rowIndex + "," + action.cellIndex]) {
+                return {
+                    ...state,
+                }
+            } else {
+                state.whereHit[action.rowIndex + "," + action.cellIndex] = true
+            }
+
             const newBoard = state.board.slice()
-            newBoard[action.rowIndex][action.cellIndex].isClicked = newBoard[action.rowIndex][action.cellIndex].isClicked === false ? true : false
+            newBoard[action.rowIndex][action.cellIndex].isClicked = newBoard[action.rowIndex][action.cellIndex].isClicked === false ? true : true
+            let totalClicks = state.clicks + 1
+            let hit = checkForHit(newBoard, action.rowIndex, action.cellIndex, action.isEmpty, action.isClicked) ? state.hits + 1 : state.hits
+            
             return {
-                board: newBoard
+                ...state,
+                board: newBoard,
+                clicks: totalClicks, 
+                hits: hit
         }
 
 

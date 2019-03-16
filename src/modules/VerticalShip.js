@@ -1,20 +1,18 @@
-const logVerticalShipPositions = true
+import checkForOverlapVertical from "../tests/VerticalShip.test";
+
+const logVerticalShipPositions = false
 
 function plantVerticalShip (boardCoordinates, shipPositions, shipLength) {
 
-//************************************************************************************* */
 // Randomly Choose First Coordinate for Ship  
-//************************************************************************************* */
 
     let randomFirstIndex = ''
     do {
         randomFirstIndex = Math.floor(Math.random()*boardCoordinates.length)
     } 
-    while (boardCoordinates[randomFirstIndex].charAt(0) > (10 - shipLength))
+    while ((boardCoordinates[randomFirstIndex].charAt(0) > (10 - shipLength)) || (checkForOverlapVertical(boardCoordinates, randomFirstIndex, shipLength) === true))
 
-//************************************************************************************* */
 // Choose Cells Ship Will Occupy
-//************************************************************************************* */
 
     let firstShipCell = boardCoordinates[randomFirstIndex]
     shipPositions.push(firstShipCell)
@@ -24,9 +22,7 @@ function plantVerticalShip (boardCoordinates, shipPositions, shipLength) {
         shipPositions.push(nextShipCell)
     }
 
-//************************************************************************************* */
 // Remove the Coordinates of the Ship's Cells from the List of Possibilities
-//************************************************************************************* */
 
     if (logVerticalShipPositions) {
         console.log('Next Vertical Ship:')

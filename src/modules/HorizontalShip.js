@@ -1,21 +1,32 @@
-const logHorizontalShipPosition = true
+import checkForOverlapHorizontal from '../tests/HorizontalShip.test'
+
+const logHorizontalShipPosition = false
 
 function plantHorizontalShip (boardCoordinates, shipPositions, shipLength) {
 
-//************************************************************************************* */
 // Randomly Choose First Coordinate for Ship  
-//************************************************************************************* */
 
     let randomFirstIndex = ''
     do {
         randomFirstIndex = Math.floor(Math.random()*boardCoordinates.length)
     } 
-    while (boardCoordinates[randomFirstIndex].charAt(1) > (10 - shipLength))
+    while ((boardCoordinates[randomFirstIndex].charAt(1) > (10 - shipLength)) || (checkForOverlapHorizontal(boardCoordinates, randomFirstIndex, shipLength) === true))
 
-//************************************************************************************* */
+
+/*
+//~~~~~~~~~
+
+let theBoard = null
+while (!validBoard(theBoard)) {
+    theBoard = generateRandomBoard()
+}
+// on this line we should have a valid board
+//~~~~~~~~~
+*/
+
+
 // Choose Cells Ship Will Occupy
-//************************************************************************************* */
-
+    
     let firstShipCell = boardCoordinates[randomFirstIndex]
     shipPositions.push(firstShipCell)
 
@@ -24,9 +35,7 @@ function plantHorizontalShip (boardCoordinates, shipPositions, shipLength) {
         shipPositions.push(nextShipCell)
     }
 
-//************************************************************************************* */
 // Remove the Coordinates of the Ship's Cells from the List of Possibilities
-//************************************************************************************* */
 
     if (logHorizontalShipPosition) {
         console.log('Next Horizontal Ship:')
@@ -40,6 +49,9 @@ function plantHorizontalShip (boardCoordinates, shipPositions, shipLength) {
 
         boardCoordinates.splice(boardCoordinates.indexOf(shipPositions[i]), 1)
     }
+
+ 
+
 }
 
 export default plantHorizontalShip

@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 import Cell from './Cell'
 
+class Board extends Component {
+
+    render() {
+        return (
+        <div className="boardContainer" style={{display: 'inline-block'}}>
+            {this.props.boardArray.map(Row)}
+        </div>
+        )
+    }
+}
+
 const Row = (cells, rowIndex) => {
   return (
     <div key={rowIndex} id="row" style={{display: 'flex'}}>
@@ -13,18 +24,6 @@ const Row = (cells, rowIndex) => {
         )}
     </div>
   )
-}
-
-
-class Board extends Component {
-
-    render() {
-        return (
-        <div className="boardContainer" style={{display: 'inline-block'}}>
-            {this.props.boardArray.map(Row)}
-        </div>
-        )
-    }
 }
 
 export default Board

@@ -11,13 +11,15 @@ if (logPositions) {
 
 function plantShips(board, width) {
 
+    let ships = [5, 4, 3, 3, 2]
+
     generateBoardCoordinates(board, width)
 
-    randomShipOrientation(boardCoordinates, shipPositions, 5)
-    randomShipOrientation(boardCoordinates, shipPositions, 4)
-    randomShipOrientation(boardCoordinates, shipPositions, 3)
-    randomShipOrientation(boardCoordinates, shipPositions, 3)
-    randomShipOrientation(boardCoordinates, shipPositions, 2)
+    randomShipOrientation(boardCoordinates, shipPositions, ships[0])
+    randomShipOrientation(boardCoordinates, shipPositions, ships[1])
+    randomShipOrientation(boardCoordinates, shipPositions, ships[2])
+    randomShipOrientation(boardCoordinates, shipPositions, ships[3])
+    randomShipOrientation(boardCoordinates, shipPositions, ships[4])
 
     if (logPositions) {
         console.log('All Ships:', shipPositions)
@@ -29,10 +31,14 @@ function plantShips(board, width) {
         board[rowIndex][columnIndex].isEmpty = false
     }
 
+    let numShipCells = ships.reduce((accumulator, currentValue) => accumulator + currentValue)
+    console.log(numShipCells)
+    return numShipCells
+
 }
 
 function generateBoardCoordinates (board, numColumns) {
-    board.map((item, index) => {
+    board.map((item) => {
         for (let i = 0; i < numColumns; i++) {
             boardCoordinates.push(JSON.stringify(item[i].row) + JSON.stringify(item[i].column))
         }
