@@ -21,7 +21,7 @@ const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 board: initialBoard,
-                ships: ships
+                ships: ships,
             };
 
         case 'CELL_IS_CLICKED':
@@ -45,6 +45,17 @@ const gameReducer = (state = initialState, action) => {
                 hits: hit
         }
 
+        case 'REFRESH_BOARD':
+            const refreshedBoard = initialState.board.slice()
+            buildBoard(refreshedBoard, action.height, action.width)
+            let newShips = plantShips(refreshedBoard, action.width)
+            return {
+                board: refreshedBoard,
+                ships: newShips,
+                hits: 0,
+                clicks: 0,
+                whereHit: {}
+            };
 
 
         default: 

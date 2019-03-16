@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import Modal from 'react-awesome-modal';
 
 class GameOver extends Component {
@@ -21,7 +22,8 @@ class GameOver extends Component {
     closeModal() {
         this.setState({
             visible : false
-        });
+        })
+        this.props.refresh()
     }
 
     render() {
@@ -42,7 +44,7 @@ class GameOver extends Component {
                         <h1 style={{fontSize: '25px'}}>You sank my battleship!!!</h1>
                         <br></br>
                         <br></br>
-                        <a class="button is-link" href="localhost:3000" onClick={() => this.closeModal()}>Close</a>
+                        <a className="button is-link" href="localhost:3000" onClick={() => this.closeModal()}>Close</a>
 
                     </div>
                 </Modal>
@@ -51,4 +53,8 @@ class GameOver extends Component {
     }
 }
 
-export default GameOver
+const mapDispatchToProps = (dispatch) => ({
+    refresh: () => dispatch({type: 'REFRESH_BOARD', height: 10, width: 10})
+})
+
+export default connect(null, mapDispatchToProps)(GameOver)

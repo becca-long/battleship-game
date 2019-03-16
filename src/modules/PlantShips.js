@@ -1,9 +1,9 @@
 import plantHorizontalShip from './HorizontalShip'
 import plantVerticalShip from './VerticalShip'
 
-const logPositions = true
 let boardCoordinates = []
 let shipPositions = []
+const logPositions = false
 
 if (logPositions) {
     console.log('Generating positions now:')
@@ -12,6 +12,9 @@ if (logPositions) {
 function plantShips(board, width) {
 
     let ships = [5, 4, 3, 3, 2]
+     
+    boardCoordinates = []
+    shipPositions = []
 
     generateBoardCoordinates(board, width)
 
@@ -32,7 +35,6 @@ function plantShips(board, width) {
     }
 
     let numShipCells = ships.reduce((accumulator, currentValue) => accumulator + currentValue)
-    console.log(numShipCells)
     return numShipCells
 
 }

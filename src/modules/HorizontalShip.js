@@ -12,19 +12,6 @@ function plantHorizontalShip (boardCoordinates, shipPositions, shipLength) {
     } 
     while ((boardCoordinates[randomFirstIndex].charAt(1) > (10 - shipLength)) || (checkForOverlapHorizontal(boardCoordinates, randomFirstIndex, shipLength) === true))
 
-
-/*
-//~~~~~~~~~
-
-let theBoard = null
-while (!validBoard(theBoard)) {
-    theBoard = generateRandomBoard()
-}
-// on this line we should have a valid board
-//~~~~~~~~~
-*/
-
-
 // Choose Cells Ship Will Occupy
     
     let firstShipCell = boardCoordinates[randomFirstIndex]
